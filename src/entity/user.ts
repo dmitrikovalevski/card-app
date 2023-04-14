@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany  } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToMany  } from "typeorm";
 import { Card } from "./card";
 
 @Entity() 
@@ -16,7 +16,10 @@ export class User {
   @Column({ default: false })
   isActive: boolean;
 
-  @OneToMany(type => Card, card => card.user, { cascade: true })
-  cards: Card[];
+  // @OneToMany(type => Card, card => card.user, { cascade: true })
+  // cards: Card[];
+
+  @ManyToMany(() => Card, card => card.users)
+  roles: Card[];
 
 }
