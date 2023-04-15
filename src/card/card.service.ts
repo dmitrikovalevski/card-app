@@ -2,8 +2,9 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Injectable } from '@nestjs/common';
 import { Card } from '../entity/card';
 import { Repository } from 'typeorm';
-import { CreateCardDto } from 'src/dto/create-card.dto';
+import { CreateCardDto } from 'src/dto/card.dto';
 import { CardDoesntExistException } from 'src/core/exception/card-exceptions';
+import { AssaignmentCardService } from 'src/services/assignment-card/assignment-card.service';
 
 
 @Injectable()
@@ -13,7 +14,8 @@ export class CardService {
 
   constructor(
     @InjectRepository(Card)
-    private cardRepository: Repository<Card>
+    private cardRepository: Repository<Card>,
+    private assignCardService: AssaignmentCardService
   ) {}
 
   findAll(): Promise<Card[]> {
@@ -47,5 +49,9 @@ export class CardService {
 
   async delete(id: number): Promise<void> {
     await this.cardRepository.delete(id)
+  }
+
+  async assignCardToUser(cardID: number): Promise<void> {
+    await this.assignCardService.attachCard(cardID)
   }
 }

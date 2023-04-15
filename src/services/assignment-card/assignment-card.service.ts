@@ -17,6 +17,6 @@ export class AssaignmentCardService {
     const user: User = await this.userService.findOne(1)
     const currentCard = await this.cardService.findOne(cardID)
     user.cards = user.cards.filter(card => card.id !== currentCard.id);
-    await this.userService.saveUser(user) 
+    await this.userService.saveUser(user)
   }
 }
