@@ -13,25 +13,25 @@ export class UserService {
 
   constructor (
     @InjectRepository(User)
-    private usersRepository: Repository<User>,
+    private userRepository: Repository<User>,
   ) {}
 
   findAll(): Promise<User[]> {
-    return this.usersRepository.find()
+    return this.userRepository.find()
   }
 
   async findOne(id: number): Promise<User | null> {
-    const user = await this.usersRepository.findOneBy({ id })
+    const user = await this.userRepository.findOneBy({ id })
     if (user) {
-      return await this.usersRepository.findOneBy({ id })
+      return await this.userRepository.findOneBy({ id })
     } else {
       throw new UserDoesntExistExcwption(500)
     }
   }
   
   async create(user: CreateUserDto): Promise<User> {
-    const userNameExist = await this.usersRepository.findOneBy({ name: user.name });
-    const userEmailExist = await this.usersRepository.findOneBy({ email: user.email })
+    const userNameExist = await this.userRepository.findOneBy({ name: user.name });
+    const userEmailExist = await this.userRepository.findOneBy({ email: user.email })
     if (userNameExist || userEmailExist) {
       if (userNameExist) {
         throw new UserExistException(user.name, 500)
@@ -40,18 +40,21 @@ export class UserService {
         throw new UserExistException(user.email, 500)
       } 
     } else {
-      const entity = this.usersRepository.create(user)
-      return await this.usersRepository.save(entity);
+      const entity = this.userRepository.create(user)
+      return await this.userRepository.save(entity);
     }
   }
   
   async update(id: number, createUserDto: CreateUserDto): Promise<void> {
-    await this.usersRepository.update(id, createUserDto)
+    await this.userRepository.update(id, createUserDto)
   }
 
   async remove(id: number): Promise<void> {
-    await this.usersRepository.delete(id)
+    await this.userRepository.delete(id)
   }
 
-  
+  async saveUser(user: User): Promise<void> {
+    await this.userRepository.save(user);
+  }
+
 }

@@ -20,6 +20,6 @@ export class User {
   // cards: Card[];
 
   @ManyToMany(() => Card, card => card.users)
-  roles: Card[];
+  cards: Card[];
 
 }

@@ -16,7 +16,6 @@ export class CardService {
   constructor(
     @InjectRepository(Card)
     private cardRepository: Repository<Card>,
-    private userService: UserService
   ) {}
 
   findAll(): Promise<Card[]> {

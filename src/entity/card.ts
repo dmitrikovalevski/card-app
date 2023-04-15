@@ -16,7 +16,7 @@ export class Card {
   // @ManyToOne(type => User, user => user.cards)
   // user: User;
 
-  @ManyToMany(() => User, user => user.roles)
+  @ManyToMany(() => User, user => user.cards)
   @JoinTable()
   users: User[];
 }
