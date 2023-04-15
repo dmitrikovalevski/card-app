@@ -4,12 +4,13 @@ import { Card } from 'src/entity/card';
 import { CardService } from './card.service';
 import { CardController } from './card.controller';
 import { User } from 'src/entity/user';
+import { AssignmentCardModule } from 'src/services/assignment-card/assignment-card.module';
 
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Card, User])],
+  imports: [TypeOrmModule.forFeature([Card, User]), AssignmentCardModule],
   providers: [CardService],
   controllers: [CardController],
-  exports: [TypeOrmModule]
+  exports: [TypeOrmModule, CardService]
 })
 export class CardModule {}

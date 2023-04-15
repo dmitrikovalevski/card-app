@@ -4,6 +4,7 @@ import { Card } from '../entity/card';
 import { Repository } from 'typeorm';
 import { CreateCardDto } from 'src/dto/card.dto';
 import { CardDoesntExistException } from 'src/core/exception/card-exceptions';
+import { AssaignmentCardService } from 'src/services/assignment-card/assignment-card.service';
 
 
 @Injectable()
@@ -14,6 +15,7 @@ export class CardService {
   constructor(
     @InjectRepository(Card)
     private cardRepository: Repository<Card>,
+    private assaignmentCardService: AssaignmentCardService
   ) {}
 
   findAll(): Promise<Card[]> {
@@ -30,6 +32,7 @@ export class CardService {
   }
 
   async create(card: CreateCardDto): Promise<Card> {
+    this.assaignmentCardService.attachCard()
     const isCardExist = await this.cardRepository.findOneBy({ ru: card.ru, en: card.en })
     if (isCardExist) {
     // если карточка существет, передадим её другому пользователю
