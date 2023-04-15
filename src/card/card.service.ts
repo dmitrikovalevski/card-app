@@ -3,9 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { Card } from '../entity/card';
 import { Repository } from 'typeorm';
 import { CreateCardDto } from 'src/dto/create-card.dto';
-import { UserService } from 'src/user/user.service';
 import { CardDoesntExistException } from 'src/core/exception/card-exceptions';
-import { User } from 'src/entity/user';
 
 
 @Injectable()
@@ -15,7 +13,7 @@ export class CardService {
 
   constructor(
     @InjectRepository(Card)
-    private cardRepository: Repository<Card>,
+    private cardRepository: Repository<Card>
   ) {}
 
   findAll(): Promise<Card[]> {
