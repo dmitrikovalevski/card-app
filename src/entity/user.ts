@@ -16,10 +16,7 @@ export class User {
   @Column({ default: false })
   isActive: boolean;
 
-  // @OneToMany(type => Card, card => card.user, { cascade: true })
-  // cards: Card[];
-
-  @ManyToMany(() => Card, card => card.users)
+  @ManyToMany(() => Card, card => card.users, { cascade: true })
   cards: Card[];
 
 }
