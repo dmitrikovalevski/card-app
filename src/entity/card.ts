@@ -13,7 +13,7 @@ export class Card {
   @Column({ length: 100 })
   en: string;
 
-  @ManyToMany(() => User, user => user.cards, { cascade: true })
+  @ManyToMany(() => User, user => user.cards)
   @JoinTable()
   users: User[];
 }
