@@ -33,3 +33,52 @@ lerna-debug.log*
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+
+#########################
+###     frontend      ###
+#########################
+
+
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# Compiled output
+frontend/card-app/dist
+frontend/card-app/tmp
+frontend/card-app/out-tsc
+frontend/card-app/bazel-out
+
+# Node
+frontend/card-app/node_modules
+frontend/card-app/npm-debug.log
+frontend/card-app/yarn-error.log
+
+# IDEs and editors
+frontend/card-app/.idea/
+frontend/card-app/.project
+frontend/card-app/.classpath
+frontend/card-app/.c9/
+frontend/card-app/*.launch
+frontend/card-app/.settings/
+frontend/card-app/*.sublime-workspace
+
+# Visual Studio Code
+frontend/card-app/.vscode/*
+frontend/card-app/!.vscode/settings.json
+frontend/card-app/!.vscode/tasks.json
+frontend/card-app/!.vscode/launch.json
+frontend/card-app/!.vscode/extensions.json
+frontend/card-app/.history/*
+
+# Miscellaneous
+frontend/card-app/.angular/cache
+frontend/card-app/.sass-cache/
+frontend/card-app/connect.lock
+frontend/card-app/coverage
+frontend/card-app/libpeerconnection.log
+frontend/card-app/testem.log
+frontend/card-app/typings
+
+# System files
+frontend/card-app/.DS_Store
+frontend/card-app/Thumbs.db

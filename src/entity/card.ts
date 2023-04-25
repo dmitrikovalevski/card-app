@@ -1,5 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, ManyToMany, JoinTable } from "typeorm";
-import { User } from "./user";
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
+import { CardModule } from "./card-module";
+
 
 @Entity() 
 export class Card {
@@ -13,10 +14,7 @@ export class Card {
   @Column({ length: 100 })
   en: string;
 
-  // @ManyToOne(type => User, user => user.cards)
-  // user: User;
+  @ManyToOne(() => CardModule, (cardModule) => cardModule.cards)
+  module: CardModule
 
-  @ManyToMany(() => User, user => user.cards)
-  @JoinTable()
-  users: User[];
 }

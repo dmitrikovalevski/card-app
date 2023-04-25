@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { Card } from '../entity/card';
 import { Repository } from 'typeorm';
 import { CreateCardDto } from 'src/dto/card.dto';
-import { CardDoesntExistException } from 'src/core/exception/card-exceptions';
+import { CardDoesntExistException, CardExistException } from 'src/core/exception/card-exceptions';
 
 
 @Injectable()
@@ -16,8 +16,8 @@ export class CardService {
     private cardRepository: Repository<Card>,
   ) {}
 
-  findAll(): Promise<Card[]> {
-    return this.cardRepository.find()
+  async findAll(): Promise<Card[]> {
+    return await this.cardRepository.find()
   }
 
   async findOne(id: number): Promise<Card | null> {
@@ -32,9 +32,7 @@ export class CardService {
   async create(card: CreateCardDto): Promise<Card> {
     const isCardExist = await this.cardRepository.findOneBy({ ru: card.ru, en: card.en })
     if (isCardExist) {
-    // если карточка существет, передадим её другому пользователю
-    // const user: User = await this.userService.findOne(4)
-    // card.user = user
+      throw new CardExistException(200, card)
     } else {
       const entity = this.cardRepository.create(card)
       return await this.cardRepository.save(entity)
@@ -47,6 +45,14 @@ export class CardService {
 
   async delete(id: number): Promise<void> {
     await this.cardRepository.delete(id)
+  }
+
+  async getCardsWithuser(): Promise<Card[]> {
+    const queryBuilder = this.cardRepository
+      .createQueryBuilder('card')
+      .innerJoinAndSelect('card.users', 'user');
+    const cards = await queryBuilder.getMany();
+    return cards;
   }
 
 }
