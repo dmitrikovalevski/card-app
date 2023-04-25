@@ -14,8 +14,6 @@ export class CardController {
 
   @Get()
   async findAll(): Promise<Card[]> {
-    const cardsWithUser = await this.cardService.getCardsWithuser()
-    console.log(cardsWithUser[0].users)
     return await this.cardService.findAll()
   }
 

@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserHttpModule } from './user/http-user.module'; 
 import { UserModule } from './user/user.module';
 import { CardModule } from './card/card.module';
+import { CardModuleModule } from './card-module/card-module.module';
 
 @Module({
   imports: [
@@ -59,7 +60,8 @@ import { CardModule } from './card/card.module';
 
     */
     UserHttpModule,
-    CardModule
+    CardModule,
+    CardModuleModule
   ],
   controllers: [],
   providers: [],

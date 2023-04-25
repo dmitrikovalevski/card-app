@@ -1,5 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToMany  } from "typeorm";
-import { Card } from "./card";
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm";
+import { CardModule } from "./card-module";
 
 @Entity() 
 export class User {
@@ -16,7 +16,7 @@ export class User {
   @Column({ default: false })
   isActive: boolean;
 
-  @ManyToMany(() => Card, card => card.users)
-  cards: Card[];
+  @OneToMany(() => CardModule, (cardModule) => cardModule)
+  modules: CardModule[]
 
 }
