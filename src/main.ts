@@ -12,7 +12,7 @@ import { AppModule } from './app.module';
 */
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, { cors: true });
   const port = parseInt(process.env.API_PORT)
   await app.listen(port || 3000, () => {
     console.log(`Card app use port: ${port}`)

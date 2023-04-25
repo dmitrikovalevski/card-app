@@ -1,9 +1,10 @@
-import { CreateUserDto } from 'src/dto/create-user.dto';
+import { CreateUserDto, IsUserActive } from 'src/dto/create-user.dto';
 import { User } from './../entity/user';
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from 'typeorm';
-import { UserDoesntExistExcwption, UserExistException } from 'src/core/exception/user-exceptions';
+import { UserDoesntExistException, UserExistException, WrongCredentialsException } from 'src/core/exception/user-exceptions';
+import { ExceptionsHandler } from '@nestjs/core/exceptions/exceptions-handler';
 
 
 @Injectable()
@@ -25,7 +26,7 @@ export class UserService {
     if (user) {
       return await this.userRepository.findOneBy({ id })
     } else {
-      throw new UserDoesntExistExcwption(500)
+      throw new UserDoesntExistException(500)
     }
   }
   
@@ -49,6 +50,10 @@ export class UserService {
     await this.userRepository.update(id, createUserDto)
   }
 
+  async setUserActiveMode(id: number, isUserActive: IsUserActive): Promise<void> {
+    await this.userRepository.update(id, isUserActive)
+  }
+
   async remove(id: number): Promise<void> {
     await this.userRepository.delete(id)
   }
@@ -56,5 +61,17 @@ export class UserService {
   async saveUser(user: User): Promise<void> {
     await this.userRepository.save(user);
   }
+
+  async authorization(createUserDto: CreateUserDto): Promise<User> {
+    const userNameExist = await this.userRepository.findOneBy({ name: createUserDto.name });
+    const userEmailExist = await this.userRepository.findOneBy({ email: createUserDto.email })
+    if (userNameExist && userEmailExist) {
+      const user = await this.findOne(userNameExist.id)
+      this.setUserActiveMode(user.id, { isActive: true })
+      return user
+    } else {
+      throw new WrongCredentialsException(500)
+    }
+  } 
 
 }

@@ -1,0 +1,6 @@
+<h2>Card app {{ isAccount() ? greeting() : '' }}</h2>
+<button *ngIf="isAccount()" (click)="signOut()">Sign-out</button>
+<button routerLink="/">Home</button>
+<button routerLink="/login">Sign-up</button>
+<button routerLink="/auth">Sign-in</button>
+<router-outlet></router-outlet>

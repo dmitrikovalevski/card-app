@@ -25,6 +25,11 @@ export class UserController {
     return await this.userService.create(createUserDto);
   }
 
+  @Post('auth')
+  async authorization(@Body() createUserDto: CreateUserDto): Promise<User> {
+    return await this.userService.authorization(createUserDto)
+  }
+
   @Put(':id/update')
   update(@Param('id') id: number, @Body() createUserDto: CreateUserDto) {
     this.userService.update(id, createUserDto)
