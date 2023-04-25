@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { CreateCardModuleDto } from "src/dto/card-moduel.dto";
+import { CreateCardModuleDto, UpdateCardModuleDto } from "src/dto/card-moduel.dto";
 import { CardModule } from "src/entity/card-module";
 import { Repository } from "typeorm";
 import { CardModuleDoesntExistException, CardModuleExistException } from "src/core/exception/card-module-exception";
@@ -38,11 +38,11 @@ export class CardModuleService {
     }
   }
   
-  async update(id: number, createCardModuleDto: CreateCardModuleDto): Promise<void> {
-    await this.cardModuleRepository.update(id, createCardModuleDto)
+  async update(id: number, updateCardModuleDto: UpdateCardModuleDto): Promise<void> {
+    await this.cardModuleRepository.update(id, updateCardModuleDto)
   }
 
-  async remove(id: number): Promise<void> {
+  async delete(id: number): Promise<void> {
     await this.cardModuleRepository.delete(id)
   }
 

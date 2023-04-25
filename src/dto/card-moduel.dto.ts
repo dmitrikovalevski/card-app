@@ -5,3 +5,7 @@ export class CreateCardModuleDto {
   userId: number;
   user: User;
 }
+
+export class UpdateCardModuleDto {
+  name: string
+}
