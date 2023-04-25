@@ -12,8 +12,14 @@ export class EmailExistException extends HttpException {
   }
 } 
 
-export class UserDoesntExistExcwption extends HttpException {
+export class UserDoesntExistException extends HttpException {
   constructor(statusCode: number) {
     super(`User doesn't exist`, statusCode)
+  }
+}
+
+export class WrongCredentialsException extends HttpException {
+  constructor(statusCode: number) {
+    super('Wrong credentials', statusCode)
   }
 }

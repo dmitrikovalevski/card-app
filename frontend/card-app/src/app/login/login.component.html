@@ -1,1 +1,14 @@
-<h2>login</h2>
+<p>login</p>
+<div [formGroup]="loginForm">
+  <div>
+    <label for="input-name">Name</label>
+    <input id="input-name" formControlName="name">
+  </div>
+  <div>
+    <label for="input-email">Email</label>
+    <input id="input-email" formControlName="email">
+  </div>
+</div>
+<div>
+  <button (click)="sendCredentials()">{{ setButtonTitle() }}</button>
+</div>
