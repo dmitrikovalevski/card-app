@@ -1,0 +1,22 @@
+import { Injectable } from '@nestjs/common';
+import { CardService } from 'src/card/card.service';
+import { User } from 'src/entity/user';
+import { UserService } from 'src/user/user.service';
+
+
+@Injectable()
+export class AssaignmentCardService {
+
+  constructor(
+    private userService: UserService,
+    private cardService: CardService
+  ) {}
+
+  async attachCard(cardID: number): Promise<void> {
+    const user: User = await this.userService.findOne(1)
+    const currentCard = await this.cardService.findOne(cardID)
+    user.cards = user.cards.filter(card => card.id !== currentCard.id);
+    user.cards.push(currentCard)
+    await this.userService.saveUser(user)
+  }
+}

@@ -5,3 +5,7 @@ export class CreateCardDto {
   en: string;
   user: User;
 }
+
+export class AttachCardDto {
+  id: number
+}

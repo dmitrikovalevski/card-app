@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common/decorators";
 import { CardService } from "./card.service";
 import { Card } from "src/entity/card";
-import { CreateCardDto } from "src/dto/create-card.dto";
+import { CreateCardDto } from "src/dto/card.dto";
 // импорт нужен для получения респонс параметров
 import { Response } from 'express';
 

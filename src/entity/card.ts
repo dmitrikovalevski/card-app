@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, ManyToMany, JoinTable } from "typeorm";
 import { User } from "./user";
 
 @Entity() 
@@ -13,6 +13,10 @@ export class Card {
   @Column({ length: 100 })
   en: string;
 
-  @ManyToOne(type => User, user => user.cards)
-  user: User;
+  // @ManyToOne(type => User, user => user.cards)
+  // user: User;
+
+  @ManyToMany(() => User, user => user.cards)
+  @JoinTable()
+  users: User[];
 }
