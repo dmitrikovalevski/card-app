@@ -1,4 +1,3 @@
-import { ActivatedRoute, Route } from '@angular/router';
 import { IUser } from '../entity/user/user.model';
 import { AuthService } from './../core/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -19,7 +18,6 @@ export class MainComponent implements OnInit {
     this.authService.getUserState().subscribe(
       (account) => {
         this.account = account
-        console.log(this.account)
       }
     )
   }

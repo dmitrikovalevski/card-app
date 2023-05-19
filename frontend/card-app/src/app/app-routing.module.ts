@@ -16,6 +16,10 @@ const routes: Routes = [
     data: {
       auth: true
     }
+  },
+  {
+    path: 'card',
+    loadChildren: () => import('./entity/card/module/card.module').then(m => m.CardModule)
   }
 ];
 
