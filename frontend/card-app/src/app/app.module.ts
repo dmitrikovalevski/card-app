@@ -6,6 +6,11 @@ import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
 import { HttpClientModule } from '@angular/common/http';
 
+// modules
+import { CardModule } from './entity/card/module/card.module';
+import { ActionCardModule } from './entity/card/components/action/module/action-card.module'; 
+
+
 @NgModule({
   declarations: [
     LoginComponent,
@@ -15,7 +20,9 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CardModule,
+    ActionCardModule
   ],
   providers: [],
   bootstrap: [
