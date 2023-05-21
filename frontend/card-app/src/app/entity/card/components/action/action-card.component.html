@@ -1,1 +1,9 @@
-<p>action-card works!</p>
+<h2>CARD FORM</h2>
+<div [formGroup]="cardForm">
+  <label for="russian-card-input">Russian</label>
+  <input formControlName="ru" type="text" id="russian-card-input">
+  <label for="english-card-input">English</label>
+  <input formControlName="en" type="text" id="english-card-input">
+</div>
+<button (click)="resetCardForm()">Reset form</button>
+<button (click)="saveCard()">Save</button>

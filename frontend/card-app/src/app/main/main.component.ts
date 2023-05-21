@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { IUser } from '../entity/user/user.model';
 import { AuthService } from './../core/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -11,12 +12,18 @@ export class MainComponent implements OnInit {
   account?: IUser | null = null;
 
   constructor(
-    private authService: AuthService,
+    protected authService: AuthService,
+    protected router: Router,
   ) {}
 
   ngOnInit(): void {
     this.authService.getUserState().subscribe(
       (account) => {
+        if (account !== null) {
+          this.router.navigate(['/cards'])
+        } else {
+          this.router.navigate(['/'])
+        }
         this.account = account
       }
     )

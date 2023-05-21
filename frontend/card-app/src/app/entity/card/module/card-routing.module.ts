@@ -13,7 +13,7 @@ const routes: Routes = [
     component: ActionCardComponent,  
   },
   {
-    path: 'update',
+    path: ':id/update',
     component: ActionCardComponent,
   }
 ];

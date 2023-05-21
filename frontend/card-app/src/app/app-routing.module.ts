@@ -18,8 +18,8 @@ const routes: Routes = [
     }
   },
   {
-    path: 'card',
-    loadChildren: () => import('./entity/card/module/card.module').then(m => m.CardModule)
+    path: '',
+    loadChildren: () => import('./entity/entity-routing.module.').then(m => m.EntityRoutingModule)
   }
 ];
 

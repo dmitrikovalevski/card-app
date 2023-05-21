@@ -5,11 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
 import { HttpClientModule } from '@angular/common/http';
-
-// modules
-import { CardModule } from './entity/card/module/card.module';
-import { ActionCardModule } from './entity/card/components/action/module/action-card.module'; 
-
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -21,8 +17,7 @@ import { ActionCardModule } from './entity/card/components/action/module/action-
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    CardModule,
-    ActionCardModule
+    RouterModule,
   ],
   providers: [],
   bootstrap: [

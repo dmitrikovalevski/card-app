@@ -24,6 +24,7 @@ export class CardController {
 
   @Post()
   async create(@Body() card: CreateCardDto): Promise<Card> {
+    console.log(card)
     return await this.cardService.create(card)
   }
 

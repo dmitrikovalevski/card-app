@@ -1,10 +1,10 @@
-import { Module } from '@nestjs/common';
+import { Module, MiddlewareConsumer, RequestMethod } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config/dist';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserHttpModule } from './user/http-user.module'; 
-import { UserModule } from './user/user.module';
+import { UserHttpModule } from './user/http-user.module';
 import { CardModule } from './card/card.module';
 import { CardModuleModule } from './card-module/card-module.module';
+import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.interface';
 
 @Module({
   imports: [

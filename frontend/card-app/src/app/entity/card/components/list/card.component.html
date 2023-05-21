@@ -1,1 +1,7 @@
-<p>card works!</p>
+<hr>
+<button [routerLink]="['new']">New card</button>
+<div *ngFor="let card of (cards$ | async); let i = index">
+  <div>{{ card.ru }} - {{ card.en }}</div>
+  <button [routerLink]="[card.id, 'update']">UPDATE</button>
+  <button (click)="deleteCard(card.id!)">DELETE</button>
+</div>
